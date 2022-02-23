@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ZhengJesse.Lab2
+namespace ZhengJesse.Lab3
 {
     public class NextCameraHandler
     {

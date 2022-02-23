@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ZhengJesse.Lab2
+namespace ZhengJesse.Lab3
 {
     public class FollowWithOffset : MonoBehaviour
     {

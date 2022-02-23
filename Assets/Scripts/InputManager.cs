@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZhengJesse.Input;
 
-namespace ZhengJesse.Lab2
+namespace ZhengJesse.Lab3
 {
     public class InputManager : MonoBehaviour
     {

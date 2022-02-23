@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ZhengJesse.Lab2
+namespace ZhengJesse.Lab3
 {
     #region Edge
     public class Edge
