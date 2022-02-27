@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>ZhengJesse.Lab2</RootNamespace>
+    <RootNamespace>ZhengJesse.Lab3</RootNamespace>
     <ProjectGuid>{6D41DD67-0D75-C3D1-EE14-69FE2002007A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -53,20 +53,16 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\RotateController.cs" />
     <Compile Include="Assets\Scripts\FollowWithOffset.cs" />
-    <Compile Include="Assets\Scripts\MazeDrawer.cs" />
     <Compile Include="Assets\Scripts\CameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\NextCameraHandler.cs" />
-    <Compile Include="Assets\Input\Lab2Input.cs" />
-    <Compile Include="Assets\Scripts\MazeBuilder.cs" />
     <Compile Include="Assets\Scripts\PrimsMazeBuilder.cs" />
     <Compile Include="Assets\Scripts\MazeRenderer.cs" />
     <Compile Include="Assets\Scripts\QuitHandler.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Input\Lab3Input.cs" />
+    <Compile Include="Assets\Scripts\MovementControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

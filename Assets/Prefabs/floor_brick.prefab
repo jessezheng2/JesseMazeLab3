@@ -177,6 +177,8 @@ GameObject:
   - component: {fileID: 4890428161756792}
   - component: {fileID: 95829103375769990}
   - component: {fileID: 205386186903810330}
+  - component: {fileID: 7957928777381410468}
+  - component: {fileID: -5752596779622289510}
   m_Layer: 0
   m_Name: floor_brick
   m_TagString: Untagged
@@ -249,6 +251,35 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23388956235869078}
   m_Enabled: 1
+--- !u!65 &7957928777381410468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687779245630262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-5752596779622289510
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687779245630262}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
 --- !u!1 &1771790788157932
 GameObject:
   m_ObjectHideFlags: 0

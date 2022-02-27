@@ -21,7 +21,7 @@ namespace ZhengJesse.Lab3
         [Range(1, 50)]
         private int Columns = 20;
         [SerializeField]
-        private float Size = 1f;
+        private float Size = 3f;
         [SerializeField]
         [Range(1, 50)]
         private int Rows = 20;
@@ -32,7 +32,7 @@ namespace ZhengJesse.Lab3
             //for the maze so that there is one and only one path from any 2 nodes of the maze.
             PrimsMazeBuilder builder = new PrimsMazeBuilder();
             builder.BuildMaze(Rows, Columns);
-            DrawFloor();
+            //DrawFloor();
             DrawMaze(builder);
         }
         /*
@@ -41,16 +41,16 @@ namespace ZhengJesse.Lab3
          */
         private void DrawFloor()
         {
-            Vector3 center = new Vector3(-Columns / 2, 0, -Rows / 2);
+            Vector3 center = new Vector3(-Columns*Size / 2, 0, -Rows*Size / 2);
             System.Random rdn = new System.Random();
 
-            for (int row = 0; row < Rows; row++)
+            for (int row = 0; row < Rows+10; row++)
             {
                 for (int col = 0; col < Columns; col++)
                 {
                     var floor = Instantiate(FloorPrefab, transform) as Transform;
-                    floor.position = center + new Vector3(row, 0, col);
-                    floor.localScale = new Vector3(1, 1, 1);
+                    floor.position = center + new Vector3(row*Size, 0, col * Size);
+                    floor.localScale = new Vector3(Size, 1, Size);
                 }
             }
         }
@@ -95,8 +95,8 @@ namespace ZhengJesse.Lab3
 
             var wall = Instantiate(WallPrefab, transform) as Transform;
             wall.position = center + new Vector3(xOffset, platformHeight, zOffset);
-            wall.localScale = new Vector3(Size, 1, wall.localScale.z);
-
+            wall.localScale = new Vector3(Size, Size, wall.localScale.z);
+           
             if (yRotate > 0)
                 wall.eulerAngles = new Vector3(0, yRotate, 0);
         }

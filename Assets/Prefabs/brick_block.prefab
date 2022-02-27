@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 4227718183715770}
   - component: {fileID: 95685291854833458}
   - component: {fileID: 205124046276833390}
+  - component: {fileID: 1487540241507998710}
   m_Layer: 0
   m_Name: brick_block
   m_TagString: Untagged
@@ -210,7 +211,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729996512237910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: ef0a0c856d5e0db4ebbcf79d26027614, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -249,6 +250,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23318102606709046}
   m_Enabled: 1
+--- !u!65 &1487540241507998710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729996512237910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1824620273046140
 GameObject:
   m_ObjectHideFlags: 0
