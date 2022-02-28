@@ -13,6 +13,9 @@ namespace ZhengJesse.Lab3
     public class MazeRenderer : MonoBehaviour
     {
         [SerializeField]
+        private GameObject player;
+
+        [SerializeField]
         private Transform FloorPrefab = null;
         [SerializeField]
         private Transform WallPrefab = null;
@@ -35,26 +38,6 @@ namespace ZhengJesse.Lab3
             //DrawFloor();
             DrawMaze(builder);
         }
-        /*
-         * A method create a floor for the maze by using a specified floor prefab.
-         * Each prefab represents one node of the cube.
-         */
-        private void DrawFloor()
-        {
-            Vector3 center = new Vector3(-Columns*Size / 2, 0, -Rows*Size / 2);
-            System.Random rdn = new System.Random();
-
-            for (int row = 0; row < Rows+10; row++)
-            {
-                for (int col = 0; col < Columns; col++)
-                {
-                    var floor = Instantiate(FloorPrefab, transform) as Transform;
-                    floor.position = center + new Vector3(row*Size, 0, col * Size);
-                    floor.localScale = new Vector3(Size, 1, Size);
-                }
-            }
-        }
-
         /*
          * Render the maze by creating walls where there isn't a path in the edge collection
          * found by PrimsMazeBuilder. 
@@ -82,6 +65,11 @@ namespace ZhengJesse.Lab3
                     {
                         if ((row != 0) || (col != 0))
                             DrawWall(center, 0, -Size / 2, 0);
+                    }
+
+                    if(col==0 && row==0)
+                    {
+                        player.transform.position = center;
                     }
                 }
             }

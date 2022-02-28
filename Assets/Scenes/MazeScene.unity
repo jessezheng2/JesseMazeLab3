@@ -223,7 +223,7 @@ MonoBehaviour:
   target: {fileID: 1154720715}
   offset: {x: 0, y: 20, z: 20}
   smoothSpeed: 0.125
-  speed: 25
+  speed: 50
   sensitivity: 10
 --- !u!1 &308956074
 GameObject:
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200c8de1169cfc143863e5492c117f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1154720714}
   FloorPrefab: {fileID: 4890428161756792, guid: 174fa5bcb7ab0eb4a9478d28ee22658a, type: 3}
   WallPrefab: {fileID: 7525418431935742320, guid: a18e6b4e3459c6447bfa37bf91cc4e6b, type: 3}
   Columns: 20

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,6 @@ namespace ZhengJesse.Lab3
 
         private InputAction moveAction;
 
-        private bool coroutineStarted = false;
 
         public void Initialize(InputAction moveAction)
         {
@@ -26,6 +26,9 @@ namespace ZhengJesse.Lab3
         {
             //Move the player to the new position
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
+            if (moveInput.magnitude == 0)
+                return;
+
             Vector3 moveDirection = Vector3.forward * moveInput.y + Vector3.right * moveInput.x;
 
             Vector3 target = playerToMove.transform.position + moveDirection;

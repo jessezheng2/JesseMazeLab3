@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,27 +10,24 @@ namespace ZhengJesse.Lab3
     {
         [SerializeField]
         private Transform target;
+
         [SerializeField] private Vector3 offset;
         public float smoothSpeed = 0.125f;
 
         public float speed = 50f;
         public float sensitivity = 10f;
 
+        private bool characterMoved = false;
 
-        Vector3 latMousePos;
+        private int count = 0;
+
+        private DateTime? noMouseMovementStartTime;
 
         private InputAction moveAction;
         public void Initialize(InputAction moveAction)
         {
             //record the movement action and playerRespawner to be used in fixed update
             this.moveAction = moveAction;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            latMousePos = Mouse.current.position.ReadValue();
-
         }
 
         // Update is called once per frame
@@ -41,15 +39,21 @@ namespace ZhengJesse.Lab3
 
             if (delta.magnitude == 0.0)
             {
-                FollowTarget();
+                if(!noMouseMovementStartTime.HasValue)
+                    noMouseMovementStartTime = DateTime.Now;
+
+                TimeSpan tp = DateTime.Now - noMouseMovementStartTime.Value;
+
+                if(tp.TotalMilliseconds>200)
+                    FollowTarget();
             }
             else
             {
+                noMouseMovementStartTime = null;
                 RotateToMousePosition();
             }
 
         }
-
         private void FollowTarget()
         {
             if (target == null)
