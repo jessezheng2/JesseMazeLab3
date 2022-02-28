@@ -11,9 +11,12 @@ namespace ZhengJesse.Lab3
         [SerializeField] private Vector3 offset;
         public float smoothSpeed = 0.125f;
 
+
+
         // Update is called once per frame
         void FixedUpdate()
         {
+            return;
             if (target == null)
                 return;
             Vector3 desiredPos = target.position + offset;

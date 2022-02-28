@@ -27,7 +27,12 @@ namespace ZhengJesse.Lab3
             //Move the player to the new position
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
             Vector3 moveDirection = Vector3.forward * moveInput.y + Vector3.right * moveInput.x;
-            playerToMove.transform.position += moveDirection * speed * Time.deltaTime;
+
+            Vector3 target = playerToMove.transform.position + moveDirection;
+            float step = speed * Time.deltaTime;
+            playerToMove.transform.position = Vector3.MoveTowards(playerToMove.transform.position, target, step);
+
+            //playerToMove.transform.position += moveDirection * speed * Time.deltaTime;
         }
     }
 }

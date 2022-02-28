@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CameraSwitch",
-                    "type": "Value",
-                    "id": "025795ac-0172-443d-8862-580f178d5bd1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "RotateMaze",
                     "type": "Button",
                     "id": "42e4287d-be55-4fbd-9044-3026425d5945",
@@ -62,28 +53,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a8657504-f6c6-4a5d-85db-e9ada01f0244",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraSwitch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d41f8fb3-1002-4ebf-8474-a91980feddfc",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CameraSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
