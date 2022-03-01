@@ -8,8 +8,9 @@ namespace ZhengJesse.Lab3
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private MovementControl movementController;
-        [SerializeField] private RotateController rotationController;
+        [SerializeField] private MovementControl _MovementController;
+        [SerializeField] private MazeRenderer _Maze;
+
 
         private Lab3Input inputScheme;
         private QuitHandler quitHandler;
@@ -18,7 +19,7 @@ namespace ZhengJesse.Lab3
         {
             //Intantiate a Lab3Input scheme.
             inputScheme = new Lab3Input();
-            movementController.Initialize(inputScheme.Player.Move);
+            _MovementController.Initialize(inputScheme.Player.Move);
         }
         private void OnEnable()
         {
@@ -26,14 +27,10 @@ namespace ZhengJesse.Lab3
             //Set up QuitHandler
             quitHandler = new QuitHandler(inputScheme.Player.Quit);
 
-            //Initialize RotationController
-            rotationController.Initialize(inputScheme.Player.RotateMaze);
 
             //Enable Quit, CameraSwith, and RotateMaze inputs.
             inputScheme.Player.Move.Enable();
             inputScheme.Player.Quit.Enable();
-            inputScheme.Player.RotateMaze.Enable();
-
         }
     }
 }

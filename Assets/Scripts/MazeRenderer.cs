@@ -13,28 +13,26 @@ namespace ZhengJesse.Lab3
     public class MazeRenderer : MonoBehaviour
     {
         [SerializeField]
-        private GameObject player;
+        private GameObject _Player;
 
         [SerializeField]
-        private Transform FloorPrefab = null;
-        [SerializeField]
-        private Transform WallPrefab = null;
+        private Transform _WallPrefab = null;
 
         [SerializeField]
         [Range(1, 50)]
-        private int Columns = 20;
+        private int _Columns = 20;
         [SerializeField]
-        private float Size = 3f;
+        private float _Size = 3f;
         [SerializeField]
         [Range(1, 50)]
-        private int Rows = 20;
+        private int _Rows = 20;
 
         void Start()
         {
             //Create a PrimsMazeBuilder object and use it to find the least weighted path
             //for the maze so that there is one and only one path from any 2 nodes of the maze.
             PrimsMazeBuilder builder = new PrimsMazeBuilder();
-            builder.BuildMaze(Rows, Columns);
+            builder.BuildMaze(_Rows, _Columns);
             //DrawFloor();
             DrawMaze(builder);
         }
@@ -44,32 +42,32 @@ namespace ZhengJesse.Lab3
          */
         private void DrawMaze(PrimsMazeBuilder builder)
         {
-            for (int row = 0; row < Rows; row++)
+            for (int row = 0; row < _Rows; row++)
             {
-                for (int col = 0; col < Columns; col++)
+                for (int col = 0; col < _Columns; col++)
                 {
-                    Vector3 center = new Vector3((-Columns / 2 + col) * Size, 0, (-Rows / 2 + row) * Size);
+                    Vector3 center = new Vector3((-_Columns / 2 + col) * _Size, 0, (-_Rows / 2 + row) * _Size);
 
                     if (builder.NodeHasEastWall(row, col))
-                        DrawWall(center, Size / 2, 0, 90);
+                        DrawWall(center, _Size / 2, 0, 90);
 
                     if (builder.NodeHasNorthWall(row, col))
                     {
-                        if (row != Rows - 1 || col != Columns - 1)
-                            DrawWall(center, 0, Size / 2, 0);
+                        if (row != _Rows - 1 || col != _Columns - 1)
+                            DrawWall(center, 0, _Size / 2, 0);
                     }
                     if (builder.NodeHasWestWall(row, col))
-                        DrawWall(center, -Size / 2, 0, 90);
+                        DrawWall(center, -_Size / 2, 0, 90);
 
                     if (builder.NodeHasSouthWall(row, col))
                     {
                         if ((row != 0) || (col != 0))
-                            DrawWall(center, 0, -Size / 2, 0);
+                            DrawWall(center, 0, -_Size / 2, 0);
                     }
 
                     if(col==0 && row==0)
                     {
-                        player.transform.position = center;
+                        _Player.transform.position = center;
                     }
                 }
             }
@@ -81,9 +79,9 @@ namespace ZhengJesse.Lab3
         {
             float platformHeight = 1;
 
-            var wall = Instantiate(WallPrefab, transform) as Transform;
+            var wall = Instantiate(_WallPrefab, transform) as Transform;
             wall.position = center + new Vector3(xOffset, platformHeight, zOffset);
-            wall.localScale = new Vector3(Size, Size, wall.localScale.z);
+            wall.localScale = new Vector3(_Size, _Size, wall.localScale.z);
            
             if (yRotate > 0)
                 wall.eulerAngles = new Vector3(0, yRotate, 0);

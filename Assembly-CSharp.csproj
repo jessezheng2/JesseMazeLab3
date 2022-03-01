@@ -53,8 +53,6 @@
     <UnityVersion>2021.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\RotateController.cs" />
-    <Compile Include="Assets\Scripts\RotateWithMouse.cs" />
     <Compile Include="Assets\Scripts\MovementControl.cs" />
     <Compile Include="Assets\Input\Lab3Input.cs" />
     <Compile Include="Assets\Scripts\PrimsMazeBuilder.cs" />
