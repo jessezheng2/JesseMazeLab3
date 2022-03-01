@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223197791}
   m_LocalRotation: {x: -0, y: 0, z: -0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: -5.6207113, y: 6.233799, z: -15.981807}
+  m_LocalPosition: {x: -6.75, y: 4.6, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -220,11 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1a8a0871577e146b03616b32ba1ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1154720715}
-  offset: {x: 0, y: 20, z: 20}
+  _Character: {fileID: 1154720715}
+  _CameraCharacterOffset: {x: 10, y: 20, z: 20}
+  _mouseSensitivity: 30
   smoothSpeed: 0.125
-  speed: 50
-  sensitivity: 10
+  _speed: 50
 --- !u!1 &308956074
 GameObject:
   m_ObjectHideFlags: 0
