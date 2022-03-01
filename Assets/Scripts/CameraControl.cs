@@ -72,8 +72,10 @@ namespace ZhengJesse.Lab3
                 }
             }
             else
-                RotateToMousePositionOld();
-
+            {
+                //RotateToMousePositionOld();
+                RotateToMousePosition();
+            }
         }
         private void FollowTarget()
         {
@@ -83,29 +85,11 @@ namespace ZhengJesse.Lab3
             transform.position = desiredPos;
             transform.LookAt(_Character);
         }
-        
-        private void RotateToMousePosition()
-        {
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Vector3 Worldpos = Camera.allCameras[0].ScreenToWorldPoint(mousePos);
 
-            UnityEngine.Debug.Log($"new system: {mousePos.x}. {Worldpos.x}");
-
-            var step = _speed * Time.deltaTime;
-
-            Quaternion rot = Quaternion.Euler(Worldpos.x, Worldpos.y, Worldpos.y);
-
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, step);
-        }
-        
         private void RotateToMousePositionOld()
         {
             float mouseX = UnityEngine.Input.GetAxis("Mouse X")* _mouseSensitivity;
             float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _mouseSensitivity;
-
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Vector3 worldpos = Camera.allCameras[0].ScreenToWorldPoint(mousePos);
-
 
             _rotationX += mouseY;
             _rotationY += mouseX;
@@ -113,26 +97,18 @@ namespace ZhengJesse.Lab3
             transform.localEulerAngles = new Vector3(_rotationX, _rotationY, 0);
         }
 
-        /*
         private void RotateToMousePosition()
         {
-            //return;
-            Vector3 mousePos = Mouse.current.position.ReadValue();
-            Vector3 Worldpos = Camera.allCameras[0].ScreenToWorldPoint(mousePos);
-            var step = speed * Time.deltaTime;
+            float mouseX = UnityEngine.Input.GetAxis("Mouse X") * _mouseSensitivity;
+            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
-            Quaternion rot = Quaternion.LookRotation(Vector3.forward, Worldpos - transform.position);
-            rot = Quaternion.Euler(rot.x,rot.y, -rot.z-45);
-            UnityEngine.Debug.Log(rot);
+            _rotationX += mouseY;
+            _rotationY += mouseX;
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, step);
+            Vector3 endpoint = new Vector3(_rotationY,_rotationX, 0.0f);
+            Quaternion rot = Quaternion.LookRotation(endpoint);
 
-
-
-            //Quaternion rot = Quaternion.Euler(mousePos.x, mousePos.y, mousePos.y);
-
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, step);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _speed * Time.deltaTime);
         }
-        */
     }
 }
