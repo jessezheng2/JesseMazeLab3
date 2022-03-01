@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RotateMaze",
-                    "type": "Button",
-                    "id": "42e4287d-be55-4fbd-9044-3026425d5945",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "7755ed98-0590-472f-8f29-efbc9f233c4f",
@@ -53,17 +44,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ee99f1a-c37a-4a84-9550-b16bb772bd6c",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateMaze",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -136,7 +116,7 @@
                 {
                     "name": "up",
                     "id": "351135fd-d508-4b20-8190-459272041309",
-                    "path": "<Gamepad>/rightStick/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -147,7 +127,7 @@
                 {
                     "name": "down",
                     "id": "f8540c2c-ead8-4fe4-9884-1ee4b4295806",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -158,7 +138,7 @@
                 {
                     "name": "left",
                     "id": "ee28a9ca-ab5e-4523-a62c-1232ff89b7b5",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -169,7 +149,7 @@
                 {
                     "name": "right",
                     "id": "f7d8f360-e9f0-41d0-a5c9-f765be8a2547",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

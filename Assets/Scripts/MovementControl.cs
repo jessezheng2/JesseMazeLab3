@@ -15,11 +15,16 @@ namespace ZhengJesse.Lab3
 
         private InputAction moveAction;
 
+        private Vector3 _MazeExit;
+        private float _MazeCubeWidth = 3;
 
-        public void Initialize(InputAction moveAction)
+
+        public void Initialize(InputAction moveAction, Vector3 mazeExit)
         {
             //record the movement action and playerRespawner to be used in fixed update
             this.moveAction = moveAction;
+            this._MazeExit = mazeExit;
+
         }
 
         private void FixedUpdate()
@@ -34,6 +39,16 @@ namespace ZhengJesse.Lab3
             Vector3 target = playerToMove.transform.position + moveDirection;
             float step = speed * Time.deltaTime;
             playerToMove.transform.position = Vector3.MoveTowards(playerToMove.transform.position, target, step);
+
+
+            Vector3 v = playerToMove.transform.position;
+
+            float f = _MazeCubeWidth / 2;
+
+            if (_MazeExit.x- f <=v.x && v.x<=_MazeExit.x+f && _MazeExit.y-f<=v.y && _MazeExit.y<=_MazeExit.y+f)
+                UnityEngine.Debug.Log($"Win");
+
+
 
             //playerToMove.transform.position += moveDirection * speed * Time.deltaTime;
         }

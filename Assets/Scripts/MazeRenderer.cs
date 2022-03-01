@@ -27,7 +27,17 @@ namespace ZhengJesse.Lab3
         [Range(1, 50)]
         private int _Rows = 20;
 
-        void Start()
+        Vector3 _Exit;
+
+
+        public Vector3 MazeExit
+        {
+            get
+            {
+                return _Exit;
+            }
+        }
+        public void BuildMaze()
         {
             //Create a PrimsMazeBuilder object and use it to find the least weighted path
             //for the maze so that there is one and only one path from any 2 nodes of the maze.
@@ -68,6 +78,10 @@ namespace ZhengJesse.Lab3
                     if(col==0 && row==0)
                     {
                         _Player.transform.position = center;
+                    }
+                    else if(col==_Columns-1 && row==_Rows-1)
+                    {
+                        _Exit = center;
                     }
                 }
             }

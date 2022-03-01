@@ -223,7 +223,7 @@ MonoBehaviour:
   _Character: {fileID: 1154720715}
   _CameraCharacterOffset: {x: 10, y: 20, z: 20}
   _mouseSensitivity: 30
-  smoothSpeed: 0.125
+  smoothSpeed: 1
   _speed: 50
 --- !u!1 &308956074
 GameObject:

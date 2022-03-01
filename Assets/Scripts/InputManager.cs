@@ -12,6 +12,7 @@ namespace ZhengJesse.Lab3
         [SerializeField] private MazeRenderer _Maze;
 
 
+
         private Lab3Input inputScheme;
         private QuitHandler quitHandler;
 
@@ -19,8 +20,14 @@ namespace ZhengJesse.Lab3
         {
             //Intantiate a Lab3Input scheme.
             inputScheme = new Lab3Input();
-            _MovementController.Initialize(inputScheme.Player.Move);
         }
+        private void Start()
+        {
+            _Maze.BuildMaze();
+            _MovementController.Initialize(inputScheme.Player.Move, _Maze.MazeExit);
+
+        }
+
         private void OnEnable()
         {
             //Set up NextCameraHandler

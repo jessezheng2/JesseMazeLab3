@@ -39,24 +39,6 @@ namespace ZhengJesse.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""CameraSwitch"",
-                    ""type"": ""Value"",
-                    ""id"": ""025795ac-0172-443d-8862-580f178d5bd1"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""RotateMaze"",
-                    ""type"": ""Button"",
-                    ""id"": ""42e4287d-be55-4fbd-9044-3026425d5945"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""7755ed98-0590-472f-8f29-efbc9f233c4f"",
@@ -86,39 +68,6 @@ namespace ZhengJesse.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a8657504-f6c6-4a5d-85db-e9ada01f0244"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraSwitch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d41f8fb3-1002-4ebf-8474-a91980feddfc"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraSwitch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ee99f1a-c37a-4a84-9550-b16bb772bd6c"",
-                    ""path"": ""<Keyboard>/0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotateMaze"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -191,7 +140,7 @@ namespace ZhengJesse.Input
                 {
                     ""name"": ""up"",
                     ""id"": ""351135fd-d508-4b20-8190-459272041309"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -202,7 +151,7 @@ namespace ZhengJesse.Input
                 {
                     ""name"": ""down"",
                     ""id"": ""f8540c2c-ead8-4fe4-9884-1ee4b4295806"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -213,7 +162,7 @@ namespace ZhengJesse.Input
                 {
                     ""name"": ""left"",
                     ""id"": ""ee28a9ca-ab5e-4523-a62c-1232ff89b7b5"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -224,7 +173,7 @@ namespace ZhengJesse.Input
                 {
                     ""name"": ""right"",
                     ""id"": ""f7d8f360-e9f0-41d0-a5c9-f765be8a2547"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -295,8 +244,6 @@ namespace ZhengJesse.Input
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
-            m_Player_CameraSwitch = m_Player.FindAction("CameraSwitch", throwIfNotFound: true);
-            m_Player_RotateMaze = m_Player.FindAction("RotateMaze", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         }
 
@@ -358,16 +305,12 @@ namespace ZhengJesse.Input
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Quit;
-        private readonly InputAction m_Player_CameraSwitch;
-        private readonly InputAction m_Player_RotateMaze;
         private readonly InputAction m_Player_Move;
         public struct PlayerActions
         {
             private @Lab3Input m_Wrapper;
             public PlayerActions(@Lab3Input wrapper) { m_Wrapper = wrapper; }
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
-            public InputAction @CameraSwitch => m_Wrapper.m_Player_CameraSwitch;
-            public InputAction @RotateMaze => m_Wrapper.m_Player_RotateMaze;
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -381,12 +324,6 @@ namespace ZhengJesse.Input
                     @Quit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
                     @Quit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
                     @Quit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
-                    @CameraSwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
-                    @CameraSwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
-                    @CameraSwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraSwitch;
-                    @RotateMaze.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateMaze;
-                    @RotateMaze.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateMaze;
-                    @RotateMaze.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateMaze;
                     @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
@@ -397,12 +334,6 @@ namespace ZhengJesse.Input
                     @Quit.started += instance.OnQuit;
                     @Quit.performed += instance.OnQuit;
                     @Quit.canceled += instance.OnQuit;
-                    @CameraSwitch.started += instance.OnCameraSwitch;
-                    @CameraSwitch.performed += instance.OnCameraSwitch;
-                    @CameraSwitch.canceled += instance.OnCameraSwitch;
-                    @RotateMaze.started += instance.OnRotateMaze;
-                    @RotateMaze.performed += instance.OnRotateMaze;
-                    @RotateMaze.canceled += instance.OnRotateMaze;
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
@@ -413,8 +344,6 @@ namespace ZhengJesse.Input
         public interface IPlayerActions
         {
             void OnQuit(InputAction.CallbackContext context);
-            void OnCameraSwitch(InputAction.CallbackContext context);
-            void OnRotateMaze(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
         }
     }

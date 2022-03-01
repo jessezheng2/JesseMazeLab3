@@ -41,7 +41,6 @@ namespace ZhengJesse.Lab3
         {
             Vector3 delta = Mouse.current.delta.ReadValue();
 
-            UnityEngine.Debug.Log($"delta.magnitude: {delta.magnitude}");
 
             if(!_Initialized)
             {
@@ -82,8 +81,14 @@ namespace ZhengJesse.Lab3
             if (_Character == null)
                 return;
             Vector3 desiredPos = _Character.position + _CameraCharacterOffset;
-            transform.position = desiredPos;
-            transform.LookAt(_Character);
+            
+            Vector3 delta = transform.position - desiredPos;
+
+            //if (delta.magnitude > smoothSpeed)
+            {
+                transform.position = desiredPos;
+                transform.LookAt(_Character);
+            }
         }
 
         private void RotateToMousePositionOld()
