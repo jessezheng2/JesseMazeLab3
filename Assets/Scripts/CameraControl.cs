@@ -17,7 +17,6 @@ namespace ZhengJesse.Lab3
         public float _mouseSensitivity = 30f;
 
 
-        public float smoothSpeed = 0.125f;
 
         public float _speed = 50f;
 

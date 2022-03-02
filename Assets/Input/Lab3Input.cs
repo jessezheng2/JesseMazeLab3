@@ -46,6 +46,15 @@ namespace ZhengJesse.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MovementSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""54f62bb4-efe5-428e-ba8b-2b777fe45ffa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +244,17 @@ namespace ZhengJesse.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""282f69ed-4fae-4e89-bcae-ac936d3697a2"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -245,6 +265,7 @@ namespace ZhengJesse.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_MovementSpeed = m_Player.FindAction("MovementSpeed", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -306,12 +327,14 @@ namespace ZhengJesse.Input
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Quit;
         private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_MovementSpeed;
         public struct PlayerActions
         {
             private @Lab3Input m_Wrapper;
             public PlayerActions(@Lab3Input wrapper) { m_Wrapper = wrapper; }
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
             public InputAction @Move => m_Wrapper.m_Player_Move;
+            public InputAction @MovementSpeed => m_Wrapper.m_Player_MovementSpeed;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -327,6 +350,9 @@ namespace ZhengJesse.Input
                     @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                    @MovementSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementSpeed;
+                    @MovementSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementSpeed;
+                    @MovementSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovementSpeed;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -337,6 +363,9 @@ namespace ZhengJesse.Input
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
+                    @MovementSpeed.started += instance.OnMovementSpeed;
+                    @MovementSpeed.performed += instance.OnMovementSpeed;
+                    @MovementSpeed.canceled += instance.OnMovementSpeed;
                 }
             }
         }
@@ -345,6 +374,7 @@ namespace ZhengJesse.Input
         {
             void OnQuit(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
+            void OnMovementSpeed(InputAction.CallbackContext context);
         }
     }
 }

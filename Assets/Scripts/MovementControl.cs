@@ -8,49 +8,47 @@ namespace ZhengJesse.Lab3
 {
     public class MovementControl : MonoBehaviour
     {
-        [SerializeField] private float speed = 0f;
+        [SerializeField] private float _Speed = 10f;
 
         [SerializeField]
-        private GameObject playerToMove;
+        private GameObject _PlayerToMove;
 
-        private InputAction moveAction;
+        private InputAction _MoveAction;
 
-        private Vector3 _MazeExit;
-        private float _MazeCubeWidth = 3;
+        private float _SpeedFactor = 1;
 
 
-        public void Initialize(InputAction moveAction, Vector3 mazeExit)
+
+        public void Initialize(InputAction moveAction,InputAction movementSpeedAction)
         {
             //record the movement action and playerRespawner to be used in fixed update
-            this.moveAction = moveAction;
-            this._MazeExit = mazeExit;
+            this._MoveAction = moveAction;
 
+            movementSpeedAction.performed += MovementSpeedAction_performed;
+        }
+
+        private void MovementSpeedAction_performed(InputAction.CallbackContext obj)
+        {
+            //When the Shift key is pressed, reduce the speed by 1/2. 
+            //When the Shift key is pressed again, restore the original speed.
+
+            if (_SpeedFactor == 1)
+                _SpeedFactor = 0.5f;
+            else
+                _SpeedFactor = 1;
         }
 
         private void FixedUpdate()
         {
             //Move the player to the new position
-            Vector2 moveInput = moveAction.ReadValue<Vector2>();
+            Vector2 moveInput = _MoveAction.ReadValue<Vector2>();
             if (moveInput.magnitude == 0)
                 return;
 
-            Vector3 moveDirection = Vector3.forward * moveInput.y + Vector3.right * moveInput.x;
-
-            Vector3 target = playerToMove.transform.position + moveDirection;
-            float step = speed * Time.deltaTime;
-            playerToMove.transform.position = Vector3.MoveTowards(playerToMove.transform.position, target, step);
-
-
-            Vector3 v = playerToMove.transform.position;
-
-            float f = _MazeCubeWidth / 2;
-
-            if (_MazeExit.x- f <=v.x && v.x<=_MazeExit.x+f && _MazeExit.y-f<=v.y && _MazeExit.y<=_MazeExit.y+f)
-                UnityEngine.Debug.Log($"Win");
-
-
-
-            //playerToMove.transform.position += moveDirection * speed * Time.deltaTime;
+            float speed = _Speed * _SpeedFactor;
+            Vector3 delta = new Vector3(moveInput.x, 0, moveInput.y) * speed * Time.deltaTime;
+            Vector3 target = _PlayerToMove.transform.position + delta;
+            _PlayerToMove.transform.position = Vector3.MoveTowards(_PlayerToMove.transform.position, target, speed * Time.deltaTime);
         }
     }
 }

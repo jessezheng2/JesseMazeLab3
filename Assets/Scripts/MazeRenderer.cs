@@ -16,6 +16,9 @@ namespace ZhengJesse.Lab3
         private GameObject _Player;
 
         [SerializeField]
+        private GameObject _ExitTrigger;
+
+        [SerializeField]
         private Transform _WallPrefab = null;
 
         [SerializeField]
@@ -27,16 +30,6 @@ namespace ZhengJesse.Lab3
         [Range(1, 50)]
         private int _Rows = 20;
 
-        Vector3 _Exit;
-
-
-        public Vector3 MazeExit
-        {
-            get
-            {
-                return _Exit;
-            }
-        }
         public void BuildMaze()
         {
             //Create a PrimsMazeBuilder object and use it to find the least weighted path
@@ -75,13 +68,13 @@ namespace ZhengJesse.Lab3
                             DrawWall(center, 0, -_Size / 2, 0);
                     }
 
-                    if(col==0 && row==0)
+                    if(col==_Columns-2 && row==_Rows-1)
                     {
                         _Player.transform.position = center;
                     }
                     else if(col==_Columns-1 && row==_Rows-1)
                     {
-                        _Exit = center;
+                        _ExitTrigger.transform.position = center;
                     }
                 }
             }

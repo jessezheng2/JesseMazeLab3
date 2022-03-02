@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZhengJesse.Input;
+using UnityEngine.SceneManagement;
 
 namespace ZhengJesse.Lab3
 {
@@ -10,7 +11,7 @@ namespace ZhengJesse.Lab3
     {
         [SerializeField] private MovementControl _MovementController;
         [SerializeField] private MazeRenderer _Maze;
-
+        [SerializeField] private TriggerHandler _TriggerHandler;
 
 
         private Lab3Input inputScheme;
@@ -24,20 +25,23 @@ namespace ZhengJesse.Lab3
         private void Start()
         {
             _Maze.BuildMaze();
-            _MovementController.Initialize(inputScheme.Player.Move, _Maze.MazeExit);
+            _MovementController.Initialize(inputScheme.Player.Move,inputScheme.Player.MovementSpeed);
+            _TriggerHandler.OnExitingMaze += _TriggerHandler_OnExitingMaze;
+        }
 
+        private void _TriggerHandler_OnExitingMaze(object sender, EventArgs e)
+        {
+            SceneManager.LoadScene("GameOver");
         }
 
         private void OnEnable()
         {
-            //Set up NextCameraHandler
-            //Set up QuitHandler
             quitHandler = new QuitHandler(inputScheme.Player.Quit);
-
 
             //Enable Quit, CameraSwith, and RotateMaze inputs.
             inputScheme.Player.Move.Enable();
             inputScheme.Player.Quit.Enable();
+            inputScheme.Player.MovementSpeed.Enable();
         }
     }
 }
