@@ -22,6 +22,9 @@ namespace ZhengJesse.Lab3
         private Transform _WallPrefab = null;
 
         [SerializeField]
+        private Transform _CoinPrefab = null;
+
+        [SerializeField]
         [Range(1, 50)]
         private int _Columns = 20;
         [SerializeField]
@@ -50,36 +53,50 @@ namespace ZhengJesse.Lab3
                 for (int col = 0; col < _Columns; col++)
                 {
                     Vector3 center = new Vector3((-_Columns / 2 + col) * _Size, 0, (-_Rows / 2 + row) * _Size);
+                    int numberOfWalls = 0;
 
                     if (builder.NodeHasEastWall(row, col))
+                    {
+                        numberOfWalls++;
                         DrawWall(center, _Size / 2, 0, 90);
-
+                    }
                     if (builder.NodeHasNorthWall(row, col))
                     {
                         if (row != _Rows - 1 || col != _Columns - 1)
+                        {
+                            numberOfWalls++;
                             DrawWall(center, 0, _Size / 2, 0);
+                        }
                     }
                     if (builder.NodeHasWestWall(row, col))
+                    {
+                        numberOfWalls++;
                         DrawWall(center, -_Size / 2, 0, 90);
-
+                    }
                     if (builder.NodeHasSouthWall(row, col))
                     {
                         if ((row != 0) || (col != 0))
+                        {
+                            numberOfWalls++;
                             DrawWall(center, 0, -_Size / 2, 0);
+                        }
                     }
+                    if (numberOfWalls == 3)
+                        AddCoin(center);
 
-                    //if(col==_Columns-2 && row==_Rows-1)
-                    if (col == 0 && row == 0)
+                    if(col==_Columns-2 && row==_Rows-1)
+                    //if (col == 0 && row == 0)
                     {
                         _Player.transform.position = center;
                     }
-                    else if(col==_Columns-1 && row==_Rows-1)
+                    else if (col == _Columns - 1 && row == _Rows - 1)
                     {
                         _ExitTrigger.transform.position = center;
                     }
                 }
             }
         }
+
         /*
          * Draw a wall between 2 nodes by using a wall prefab.
         */
@@ -93,6 +110,13 @@ namespace ZhengJesse.Lab3
            
             if (yRotate > 0)
                 wall.eulerAngles = new Vector3(0, yRotate, 0);
+        }
+
+        private void AddCoin(Vector3 center)
+        {
+            var coin = Instantiate(_CoinPrefab, transform) as Transform;
+            coin.position = center+new Vector3(0,2,0);
+
         }
     }
     #endregion

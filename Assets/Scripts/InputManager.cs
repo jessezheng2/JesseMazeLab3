@@ -24,6 +24,7 @@ namespace ZhengJesse.Lab3
         }
         private void Start()
         {
+             PlayerScore.Initialize();
             _Maze.BuildMaze();
             _MovementController.Initialize(inputScheme.Player.Move,inputScheme.Player.MovementSpeed);
             _TriggerHandler.OnExitingMaze += _TriggerHandler_OnExitingMaze;
