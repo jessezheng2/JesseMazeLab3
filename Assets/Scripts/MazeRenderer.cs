@@ -91,6 +91,7 @@ namespace ZhengJesse.Lab3
                     }
                     else if (col == _Columns - 1 && row == _Rows - 1)
                     {
+                        center.z += 1;
                         _ExitTrigger.transform.position = center;
                     }
                 }

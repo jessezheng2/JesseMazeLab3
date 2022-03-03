@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MovementSpeed",
-                    "type": "Button",
-                    "id": "54f62bb4-efe5-428e-ba8b-2b777fe45ffa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -220,17 +211,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "282f69ed-4fae-4e89-bcae-ac936d3697a2",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MovementSpeed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

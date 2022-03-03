@@ -26,7 +26,7 @@ namespace ZhengJesse.Lab3
         {
              PlayerScore.Initialize();
             _Maze.BuildMaze();
-            _MovementController.Initialize(inputScheme.Player.Move,inputScheme.Player.MovementSpeed);
+            _MovementController.Initialize(inputScheme.Player.Move);
             _TriggerHandler.OnExitingMaze += _TriggerHandler_OnExitingMaze;
         }
 
@@ -42,7 +42,7 @@ namespace ZhengJesse.Lab3
             //Enable Quit, CameraSwith, and RotateMaze inputs.
             inputScheme.Player.Move.Enable();
             inputScheme.Player.Quit.Enable();
-            inputScheme.Player.MovementSpeed.Enable();
+            //inputScheme.Player.MovementSpeed.Enable();
         }
     }
 }
