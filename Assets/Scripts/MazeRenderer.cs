@@ -81,9 +81,10 @@ namespace ZhengJesse.Lab3
                             DrawWall(center, 0, -_Size / 2, 0);
                         }
                     }
+                    
                     if (numberOfWalls == 3)
                         AddCoin(center);
-
+                    
                     if(col==_Columns-2 && row==_Rows-1)
                     //if (col == 0 && row == 0)
                     {

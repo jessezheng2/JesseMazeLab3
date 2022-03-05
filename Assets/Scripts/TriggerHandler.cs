@@ -16,20 +16,18 @@ namespace ZhengJesse.Lab3
 
         void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.tag=="Samy")
+            if (other.gameObject.tag == "Samy")
             {
-                //_TextToDisplay.SetActive(true);
-                //StartCoroutine("WaitForSec");
-                OnExitingMaze(this, new EventArgs());
+                AudioSource _Success = Camera.main.GetComponent<AudioSource>();
+                _Success.Play();
+                StartCoroutine("WaitForSoundToPlay");
             }
-        }
 
-        IEnumerator WaitForSec()
+        }
+        IEnumerator WaitForSoundToPlay()
         {
-            yield return new WaitForSeconds(5);
-            //Destroy(_TextToDisplay);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(3f);
+            OnExitingMaze(this, new EventArgs());
         }
-
     }
 }
