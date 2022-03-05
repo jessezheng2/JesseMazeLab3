@@ -20,24 +20,24 @@ namespace ZhengJesse.Lab3
         {
             if(other.tag=="Samy")
             {
-                Vector3 p = new Vector3(0, 2, 0);
+                Vector3 p = new Vector3(0, 3, 0);
                 transform.position += p;
                 StartCoroutine("WaitForSecUp",other);
             }
         }
         IEnumerator WaitForSecUp(Collider other)
         {
-            yield return new WaitForSeconds(0.2f);
-            Vector3 p = new Vector3(0, 2, 0);
-            transform.position -= p;
+            yield return new WaitForSeconds(0.5f);
+            Vector3 p = new Vector3(0, -3, 0);
+            transform.position += p;
             StartCoroutine("WaitForSecDown", other);
         }
         IEnumerator WaitForSecDown(Collider other)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             AudioSource chime = other.GetComponent<AudioSource>();
             chime.Play();
-            other.attachedRigidbody.GetComponent<PlayerScore>().AddScore();
+            PlayerScore.AddScore();
             Destroy(gameObject);
         }
     }

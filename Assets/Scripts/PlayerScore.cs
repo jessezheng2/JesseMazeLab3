@@ -13,7 +13,7 @@ namespace ZhengJesse.Lab3
         {
             _Score = 0;
         }
-        public void AddScore()
+        public static void AddScore()
         {
             _Score++;
         }

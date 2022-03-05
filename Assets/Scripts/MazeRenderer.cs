@@ -25,6 +25,9 @@ namespace ZhengJesse.Lab3
         private Transform _CoinPrefab = null;
 
         [SerializeField]
+        private Transform _FloorPrefab = null;
+
+        [SerializeField]
         [Range(1, 50)]
         private int _Columns = 20;
         [SerializeField]
@@ -39,8 +42,23 @@ namespace ZhengJesse.Lab3
             //for the maze so that there is one and only one path from any 2 nodes of the maze.
             PrimsMazeBuilder builder = new PrimsMazeBuilder();
             builder.BuildMaze(_Rows, _Columns);
-            //DrawFloor();
+            DrawFloor();
             DrawMaze(builder);
+        }
+        private void DrawFloor()
+        {
+            Vector3 center = new Vector3(-_Columns * _Size / 2, 0, -_Rows * _Size / 2);
+
+            for (int row = 0; row < _Rows; row++)
+            {
+                for (int col = 0; col < _Columns; col++)
+                {
+                    var floor = Instantiate(_FloorPrefab, transform) as Transform;
+                    floor.position = center + new Vector3(row*_Size, 0, col * _Size);
+                    floor.localScale = new Vector3(_Size, 1, _Size);
+                }
+            }
+            
         }
         /*
          * Render the maze by creating walls where there isn't a path in the edge collection
