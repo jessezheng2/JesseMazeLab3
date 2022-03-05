@@ -11,7 +11,7 @@ namespace ZhengJesse.Lab3
     {
         [SerializeField] private MovementControl _MovementController;
         [SerializeField] private MazeRenderer _Maze;
-        [SerializeField] private TriggerHandler _TriggerHandler;
+        [SerializeField] private ExitManager _ExitManager;
 
 
         private Lab3Input inputScheme;
@@ -27,7 +27,7 @@ namespace ZhengJesse.Lab3
              PlayerScore.Initialize();
             _Maze.BuildMaze();
             _MovementController.Initialize(inputScheme.Player.Move);
-            _TriggerHandler.OnExitingMaze += _TriggerHandler_OnExitingMaze;
+            _ExitManager.OnExitingMaze += _TriggerHandler_OnExitingMaze;
         }
 
         private void _TriggerHandler_OnExitingMaze(object sender, EventArgs e)

@@ -629,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MovementController: {fileID: 899991504}
   _Maze: {fileID: 899991505}
-  _TriggerHandler: {fileID: 1123669526}
+  _ExitManager: {fileID: 1123669526}
 --- !u!4 &899991502
 Transform:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 1}
+  m_Size: {x: 1.1, y: 3, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1154720718
 MonoBehaviour:
@@ -989,7 +989,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 05a75bb74e39a5446a36f075e31a1cc6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

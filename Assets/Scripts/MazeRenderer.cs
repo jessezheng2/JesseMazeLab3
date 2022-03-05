@@ -36,6 +36,7 @@ namespace ZhengJesse.Lab3
         [Range(1, 50)]
         private int _Rows = 20;
 
+       
         public void BuildMaze()
         {
             //Create a PrimsMazeBuilder object and use it to find the least weighted path

@@ -26,9 +26,20 @@ namespace ZhengJesse.Lab3
 
                     msg = $@"Congratulations! You have sucessfully navigated the maze! You've collected {coins} along the way.";
                     msg = $"{msg} \r\nPush Play for another game or Quit to exit the game.";
+                    msg = $"{msg} \r\n\r\nThe game will automatically start 10 seconds after you see this message!";
                     txt.text = msg;
                 }
+
+                StartCoroutine("AutoStartGameWithDelay");
+
+
             }
+        }
+
+        IEnumerator AutoStartGameWithDelay()
+        {
+            yield return new WaitForSeconds(10f);
+            StartGame();
         }
         public void StartGame()
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ZhengJesse.Lab3
 {
-    public class TriggerHandler : MonoBehaviour
+    public class ExitManager : MonoBehaviour
     {
         public event EventHandler OnExitingMaze;
         // Start is called before the first frame update
@@ -18,15 +18,15 @@ namespace ZhengJesse.Lab3
         {
             if (other.gameObject.tag == "Samy")
             {
-                AudioSource _Success = Camera.main.GetComponent<AudioSource>();
-                _Success.Play();
+                AudioSource success = Camera.main.GetComponent<AudioSource>();
+                success.Play();
                 StartCoroutine("WaitForSoundToPlay");
             }
 
         }
         IEnumerator WaitForSoundToPlay()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             OnExitingMaze(this, new EventArgs());
         }
     }
