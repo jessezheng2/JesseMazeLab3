@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ZhengJesse.Lab3
 {
-    /* To manage the coins in the maze
+    /* 
+     * To manage the coins in the maze
      * When player collide with a floating coin, the play earns one point
      */
     public class CoinManager : MonoBehaviour

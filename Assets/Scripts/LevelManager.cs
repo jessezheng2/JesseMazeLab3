@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 
 namespace ZhengJesse.Lab3
 {
+    /*
+     * This class manages the scenes. It displays the GameOver scene when the player
+     * reaches the exit.
+     */
     public class LevelManager : MonoBehaviour
     {
         private void Awake()
         {
+            /*Set up GameOver scene to display game playing result and some instructions.*/
+
             string name = gameObject.name;
             if(string.Compare(name,"GameOver",false)==0)
             {
@@ -41,10 +47,16 @@ namespace ZhengJesse.Lab3
             yield return new WaitForSeconds(10f);
             StartGame();
         }
+        /*
+         * Starts a new game.
+         */
         public void StartGame()
         {
             SceneManager.LoadScene("MazeScene");
         }
+        /*
+         * Quit the game if the player wants to.
+         */
         public void QuitGame()
         {
             Application.Quit();

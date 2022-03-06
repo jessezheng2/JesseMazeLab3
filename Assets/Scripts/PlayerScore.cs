@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace ZhengJesse.Lab3
 {
+    /*
+     * Keep track of the player's score and display it to a floating text.
+     */
     public class PlayerScore : MonoBehaviour
     {
         private static int _Score = 0;

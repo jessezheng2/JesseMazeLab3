@@ -103,16 +103,18 @@ namespace ZhengJesse.Lab3
                         }
                     }
                     
+                    //The node has 3 walls, it's a dead end,add a coin.
                     if (numberOfWalls == 3)
                         AddCoin(center);
                     
-                    //if(col==_Columns-2 && row==_Rows-1)
+                    //Put the player in the entrance cube.
                     if (col == 0 && row == 0)
                     {
                         _Player.transform.position = center;
                     }
                     else if (col == _Columns - 1 && row == _Rows - 1)
                     {
+                        //Setup exit trigger.
                         center.z += 1;
                         _ExitTrigger.transform.position = center;
                     }
@@ -135,6 +137,9 @@ namespace ZhengJesse.Lab3
                 wall.eulerAngles = new Vector3(0, yRotate, 0);
         }
 
+        /*
+         * Add a floating coin to the cube in the maze.
+         */
         private void AddCoin(Vector3 center)
         {
             var coin = Instantiate(_CoinPrefab, transform) as Transform;
