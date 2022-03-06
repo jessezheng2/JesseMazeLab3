@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 
 namespace ZhengJesse.Lab3
 {
+    /* 
+     * This is the main class that controls the flow of the game.
+     * First, it creates the maze.
+     * Then, it responds to the player's input to move the player in the maze.
+     * When the player reaches the exit of the maze, it displays a new scene
+     * and provides options for the player to play another round or exit.
+     */
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private MovementControl _MovementController;
@@ -19,7 +26,7 @@ namespace ZhengJesse.Lab3
 
         private void Awake()
         {
-            //Intantiate a Lab3Input scheme.
+            //Instantiate a Lab3Input scheme.
             inputScheme = new Lab3Input();
         }
         private void Start()
@@ -39,10 +46,9 @@ namespace ZhengJesse.Lab3
         {
             quitHandler = new QuitHandler(inputScheme.Player.Quit);
 
-            //Enable Quit, CameraSwith, and RotateMaze inputs.
+            //Enable move and quit inputs.
             inputScheme.Player.Move.Enable();
             inputScheme.Player.Quit.Enable();
-            //inputScheme.Player.MovementSpeed.Enable();
         }
     }
 }

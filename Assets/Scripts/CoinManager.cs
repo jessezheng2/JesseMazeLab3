@@ -9,10 +9,31 @@ namespace ZhengJesse.Lab3
      */
     public class CoinManager : MonoBehaviour
     {
+        private int _Step = 0;
+        private void Start()
+        {
+
+        }
         void Update()
         {
-            /*Rotate the coin*/
-            transform.Rotate(90 * Time.deltaTime, 0, 0);
+            int maxStep = 220;
+            Vector3 delta = new Vector3(0,0.005f,0);
+            if (_Step < maxStep)
+                _Step++;
+            else if(_Step== maxStep)
+            {
+                _Step = -maxStep;
+            }
+
+            if (_Step < 0)
+                delta.y *= -1;
+
+            if(_Step != 0)
+                transform.position += delta;
+
+                /*Rotate the coin*/
+                transform.Rotate(30 * Time.deltaTime, 0, 0);
+
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -39,7 +60,10 @@ namespace ZhengJesse.Lab3
         {
             yield return new WaitForSeconds(0.05f);
             AudioSource chime = other.GetComponent<AudioSource>();
-            chime.Play();
+            
+            if(chime != null)
+                chime.Play();
+
             PlayerScore.AddScore();
             Destroy(gameObject);
         }

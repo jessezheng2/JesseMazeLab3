@@ -22,20 +22,20 @@ namespace ZhengJesse.Lab3
      */
     public class PrimsMazeBuilder
     {
-        //Number of columns of the maze. This is configurable 
-        //on the Maze object. 
+        //Number of columns of the maze. This is configurable on the Maze object. 
         public int Columns = 20;
         public int Rows = 20;
 
         // The maximum weight for the edges.
         private int MaxWeight = 1;
 
-        //A list to keep track of the edges not have not been included 
-        //in the maze
+        //A list to keep track of the edges not have not been included in the maze
         public List<Edge> EdgesExcluded;
-        //A list to keep track of the edges that are included in the maze
-        //When the algorithm is completed, the list will contains all 
-        //edges that are to be the path of the maze.
+        /*
+         * A list to keep track of the edges that are included in the maze.
+         * When the algorithm is completed, the list will contains all
+         * edges that are to be the path of the maze.
+         */
         public List<Edge> EdgesIncluded;
 
         //A list of Nodes that are not processed.
@@ -123,8 +123,7 @@ namespace ZhengJesse.Lab3
                 bool node1Included = NodesIncluded.Contains(e._Node1);
                 bool node2Included = NodesIncluded.Contains(e._Node2);
 
-                //If the edge found connects 2 nodes that have been processed,
-                // Don't use it.
+                //If the edge found connects 2 nodes that have been processed, don't use it.
                 if (node1Included && node2Included)
                     continue;
 

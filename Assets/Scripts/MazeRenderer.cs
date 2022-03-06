@@ -39,8 +39,10 @@ namespace ZhengJesse.Lab3
        
         public void BuildMaze()
         {
-            //Create a PrimsMazeBuilder object and use it to find the least weighted path
-            //for the maze so that there is one and only one path from any 2 nodes of the maze.
+            /*
+             * Create a PrimsMazeBuilder object and use it to find the least weighted path for the maze 
+             * so that there is one and only one path from any 2 nodes of the maze.
+             */
             PrimsMazeBuilder builder = new PrimsMazeBuilder();
             builder.BuildMaze(_Rows, _Columns);
             DrawFloor();
@@ -104,8 +106,8 @@ namespace ZhengJesse.Lab3
                     if (numberOfWalls == 3)
                         AddCoin(center);
                     
-                    if(col==_Columns-2 && row==_Rows-1)
-                    //if (col == 0 && row == 0)
+                    //if(col==_Columns-2 && row==_Rows-1)
+                    if (col == 0 && row == 0)
                     {
                         _Player.transform.position = center;
                     }
@@ -136,7 +138,7 @@ namespace ZhengJesse.Lab3
         private void AddCoin(Vector3 center)
         {
             var coin = Instantiate(_CoinPrefab, transform) as Transform;
-            coin.position = center+new Vector3(0,2,0);
+            coin.position = center+new Vector3(0,1,0);
 
         }
     }

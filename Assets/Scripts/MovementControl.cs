@@ -15,29 +15,33 @@ namespace ZhengJesse.Lab3
 
         private InputAction _MoveAction;
 
-        private float _SpeedFactor = 1f;
-
-
         public void Initialize(InputAction moveAction)
         {
             //record the movement action and playerRespawner to be used in fixed update
             this._MoveAction = moveAction;
         }
+        /*
+         * Move the player according to the player's input. 
+         * If the player presses the shift key while trying to navigate the maze, it will move the player
+         * at 50% of the normal speed.
+         */
         private void FixedUpdate()
         {
             //Move the player to the new position
             Vector2 moveInput = _MoveAction.ReadValue<Vector2>();
             if (moveInput.magnitude == 0)
                 return;
+            
+            //If shift key is not pressed, the player will move at a normal speed that was configured for the game.
 
-            _SpeedFactor = 1;
+            float speedFactor = 1;
             if (UnityEngine.Input.GetKey(KeyCode.LeftShift) || UnityEngine.Input.GetKey(KeyCode.RightShift))
             {
-                _SpeedFactor = 0.5f;
+                //If the shift key is pressed, the player will move at half the normal speed.
+                speedFactor = 0.5f;
             }
 
-
-            float speed = _Speed * _SpeedFactor;
+            float speed = _Speed * speedFactor;
             Vector3 delta = new Vector3(moveInput.x, 0, moveInput.y) * speed * Time.deltaTime;
             Vector3 target = _PlayerToMove.transform.position + delta;
             _PlayerToMove.transform.position = Vector3.MoveTowards(_PlayerToMove.transform.position, target, speed * Time.deltaTime);

@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 namespace ZhengJesse.Lab3
 {
+    /*
+     * When the user pushes the Esc key, exit the program.
+     */
     public class QuitHandler
     {
         public QuitHandler(InputAction quitAction)

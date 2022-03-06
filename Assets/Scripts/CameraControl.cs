@@ -14,19 +14,16 @@ namespace ZhengJesse.Lab3
         [SerializeField] private Vector3 _CameraCharacterOffset;
 
         [SerializeField]
-        public float _mouseSensitivity = 30f;
+        public float _MouseSensitivity = 30f;
 
-
-
-        public float _speed = 50f;
+        public float _Speed = 50f;
 
         private bool _Initialized = false;
 
         private float _rotationY;
         private float _rotationX;
 
-
-        private DateTime? noMouseMovementStartTime;
+        private DateTime? _NoMouseMovementStartTime;
 
         private InputAction moveAction;
         public void Initialize(InputAction moveAction)
@@ -35,12 +32,14 @@ namespace ZhengJesse.Lab3
             this.moveAction = moveAction;
         }
 
-        // Update is called once per frame
+        /*
+         * Control the camera to follow the user or rotate the maze.
+         * If it detects that there is no mouse movement for an entire 1 second,
+         * let the camera look at the player again.
+         */
         void Update()
         {
-            Vector3 delta = Mouse.current.delta.ReadValue();
-
-
+            // When the game first starts, make the camera look at the player. 
             if(!_Initialized)
             {
                 FollowTarget();
@@ -49,30 +48,32 @@ namespace ZhengJesse.Lab3
                 return;
             }
 
-            if (delta.magnitude == 0.0)
+            // Check if there is any mouse movement.
+            Vector3 delta = Mouse.current.delta.ReadValue();
+            if (delta.magnitude > 0.0)
             {
-                if (!noMouseMovementStartTime.HasValue)
-                    noMouseMovementStartTime = DateTime.Now;
+                _NoMouseMovementStartTime = null;
+                //RotateToMousePositionOld();
+                RotateToMousePosition();
+                return;
             }
-            else
-            {
-                noMouseMovementStartTime = null;
-            }
-            if (noMouseMovementStartTime.HasValue)
-            {
-                TimeSpan tp = DateTime.Now - noMouseMovementStartTime.Value;
+            // If it gets here, that means that the mouse is not moving
+            if (!_NoMouseMovementStartTime.HasValue)
+                _NoMouseMovementStartTime = DateTime.Now;
 
+
+            if (_NoMouseMovementStartTime.HasValue)
+            {
+                TimeSpan tp = DateTime.Now - _NoMouseMovementStartTime.Value;
+                /*
+                * If the mouse has been not moving for an entire second, 
+                * make the camera follow the player again.
+                */
                 if (tp.TotalMilliseconds > 1000)
                 {
                     FollowTarget();
-                    noMouseMovementStartTime = null;
-                    return;
+                    _NoMouseMovementStartTime = null;
                 }
-            }
-            else
-            {
-                //RotateToMousePositionOld();
-                RotateToMousePosition();
             }
         }
         private void FollowTarget()
@@ -92,8 +93,8 @@ namespace ZhengJesse.Lab3
 
         private void RotateToMousePositionOld()
         {
-            float mouseX = UnityEngine.Input.GetAxis("Mouse X")* _mouseSensitivity;
-            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _mouseSensitivity;
+            float mouseX = UnityEngine.Input.GetAxis("Mouse X")* _MouseSensitivity;
+            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _MouseSensitivity;
 
             _rotationX += mouseY;
             _rotationY += mouseX;
@@ -103,8 +104,8 @@ namespace ZhengJesse.Lab3
 
         private void RotateToMousePosition()
         {
-            float mouseX = UnityEngine.Input.GetAxis("Mouse X") * _mouseSensitivity;
-            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _mouseSensitivity;
+            float mouseX = UnityEngine.Input.GetAxis("Mouse X") * _MouseSensitivity;
+            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _MouseSensitivity;
 
             _rotationX += mouseY;
             _rotationY += mouseX;
@@ -112,7 +113,7 @@ namespace ZhengJesse.Lab3
             Vector3 endpoint = new Vector3(_rotationY,_rotationX, 0.0f);
             Quaternion rot = Quaternion.LookRotation(endpoint);
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _speed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _Speed * Time.deltaTime);
         }
     }
 }
