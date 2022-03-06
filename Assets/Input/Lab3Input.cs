@@ -46,6 +46,24 @@ namespace ZhengJesse.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftShift"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7fdb1394-ea2a-4512-80af-5e7cf2646131"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightShift"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""862120ee-1fac-4e1c-98b3-0ebd198bac8f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +253,28 @@ namespace ZhengJesse.Input
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5567547-af7b-493f-81c0-60cd7d417a22"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftShift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ff9db18-c6b5-4f19-bed7-29a0a5488450"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightShift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -245,6 +285,8 @@ namespace ZhengJesse.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_LeftShift = m_Player.FindAction("LeftShift", throwIfNotFound: true);
+            m_Player_RightShift = m_Player.FindAction("RightShift", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -306,12 +348,16 @@ namespace ZhengJesse.Input
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Quit;
         private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_LeftShift;
+        private readonly InputAction m_Player_RightShift;
         public struct PlayerActions
         {
             private @Lab3Input m_Wrapper;
             public PlayerActions(@Lab3Input wrapper) { m_Wrapper = wrapper; }
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
             public InputAction @Move => m_Wrapper.m_Player_Move;
+            public InputAction @LeftShift => m_Wrapper.m_Player_LeftShift;
+            public InputAction @RightShift => m_Wrapper.m_Player_RightShift;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -327,6 +373,12 @@ namespace ZhengJesse.Input
                     @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                     @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                    @LeftShift.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
+                    @LeftShift.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
+                    @LeftShift.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
+                    @RightShift.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShift;
+                    @RightShift.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShift;
+                    @RightShift.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightShift;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -337,6 +389,12 @@ namespace ZhengJesse.Input
                     @Move.started += instance.OnMove;
                     @Move.performed += instance.OnMove;
                     @Move.canceled += instance.OnMove;
+                    @LeftShift.started += instance.OnLeftShift;
+                    @LeftShift.performed += instance.OnLeftShift;
+                    @LeftShift.canceled += instance.OnLeftShift;
+                    @RightShift.started += instance.OnRightShift;
+                    @RightShift.performed += instance.OnRightShift;
+                    @RightShift.canceled += instance.OnRightShift;
                 }
             }
         }
@@ -345,6 +403,8 @@ namespace ZhengJesse.Input
         {
             void OnQuit(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
+            void OnLeftShift(InputAction.CallbackContext context);
+            void OnRightShift(InputAction.CallbackContext context);
         }
     }
 }

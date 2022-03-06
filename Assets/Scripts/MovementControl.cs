@@ -14,11 +14,15 @@ namespace ZhengJesse.Lab3
         private GameObject _PlayerToMove;
 
         private InputAction _MoveAction;
+        private InputAction _LeftShiftAction;
+        private InputAction _RightShiftAction;
 
-        public void Initialize(InputAction moveAction)
+        public void Initialize(InputAction moveAction, InputAction leftShift, InputAction rightShift)
         {
             //record the movement action and playerRespawner to be used in fixed update
             this._MoveAction = moveAction;
+            this._LeftShiftAction = leftShift;
+            this._RightShiftAction = rightShift;
         }
         /*
          * Move the player according to the player's input. 
@@ -35,11 +39,14 @@ namespace ZhengJesse.Lab3
             //If shift key is not pressed, the player will move at a normal speed that was configured for the game.
 
             float speedFactor = 1;
-            if (UnityEngine.Input.GetKey(KeyCode.LeftShift) || UnityEngine.Input.GetKey(KeyCode.RightShift))
+            float fl = _LeftShiftAction.ReadValue<float>();
+            float fr = _RightShiftAction.ReadValue<float>();
+            if (fl > 0.1f || fr > 0.1f)
             {
                 //If the shift key is pressed, the player will move at half the normal speed.
                 speedFactor = 0.5f;
             }
+
 
             float speed = _Speed * speedFactor;
             Vector3 delta = new Vector3(moveInput.x, 0, moveInput.y) * speed * Time.deltaTime;

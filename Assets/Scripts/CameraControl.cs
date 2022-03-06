@@ -93,8 +93,8 @@ namespace ZhengJesse.Lab3
 
         private void RotateToMousePositionOld()
         {
-            float mouseX = UnityEngine.Input.GetAxis("Mouse X")* _MouseSensitivity;
-            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _MouseSensitivity;
+            float mouseX = Mouse.current.delta.x.ReadValue() * _MouseSensitivity;
+            float mouseY = Mouse.current.delta.y.ReadValue() * _MouseSensitivity;
 
             _rotationX += mouseY;
             _rotationY += mouseX;
@@ -104,8 +104,8 @@ namespace ZhengJesse.Lab3
 
         private void RotateToMousePosition()
         {
-            float mouseX = UnityEngine.Input.GetAxis("Mouse X") * _MouseSensitivity;
-            float mouseY = UnityEngine.Input.GetAxis("Mouse Y") * _MouseSensitivity;
+            float mouseX = Mouse.current.delta.x.ReadValue() * _MouseSensitivity;
+            float mouseY = Mouse.current.delta.y.ReadValue() * _MouseSensitivity;
 
             _rotationX += mouseY;
             _rotationY += mouseX;

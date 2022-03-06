@@ -33,7 +33,7 @@ namespace ZhengJesse.Lab3
         {
              PlayerScore.Initialize();
             _Maze.BuildMaze();
-            _MovementController.Initialize(inputScheme.Player.Move);
+            _MovementController.Initialize(inputScheme.Player.Move, inputScheme.Player.LeftShift, inputScheme.Player.RightShift);
             _ExitManager.OnExitingMaze += _TriggerHandler_OnExitingMaze;
         }
 
@@ -49,6 +49,8 @@ namespace ZhengJesse.Lab3
             //Enable move and quit inputs.
             inputScheme.Player.Move.Enable();
             inputScheme.Player.Quit.Enable();
+            inputScheme.Player.LeftShift.Enable();
+            inputScheme.Player.RightShift.Enable();
         }
     }
 }

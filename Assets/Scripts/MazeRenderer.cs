@@ -106,9 +106,10 @@ namespace ZhengJesse.Lab3
                     //The node has 3 walls, it's a dead end,add a coin.
                     if (numberOfWalls == 3)
                         AddCoin(center);
-                    
+
                     //Put the player in the entrance cube.
-                    if (col == 0 && row == 0)
+                    //if (col == 0 && row == 0)
+                    if (col == _Columns - 2 && row == _Rows - 1)
                     {
                         _Player.transform.position = center;
                     }
